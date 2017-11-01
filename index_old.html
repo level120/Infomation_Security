@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>S-DES 테스트</title>
+    <meta name="author" content="12110066">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="12110066 Homework">
+    <meta property="og:description" content="S-DES simulation">
+
+    <script type="text/javascript" src="js/sdes.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function run() {
+            var key = document.getElementById("key").value;
+
+            if (function() {
+                    return /^[0-9]+$/g.test(key) ? false : true;
+                }() || function() {
+                    key *= 1;
+                    if (key < 0 || key > 1023) return true;
+                    else return false;
+                }()) {
+                alert('키 값이 올바르지 않습니다.\n유효 키 값의 범위는 0 ~ 1023 입니다.');
+                return;
+            }
+
+            // Key
+            var varp = p(10, key, 10);
+            var shf1 = (ls(1, 5, varp >> 5) << 5) | ls(1, 5, varp & 0x1F);
+            var k1 = p(8, shf1, 10);
+            var shf2 = (ls(2, 5, shf1 >> 5) << 5) | ls(2, 5, shf1 & 0x1F);
+            var k2 = p(8, shf2, 10);
+
+            document.getElementById("p10").value = getbit(10, varp);
+            document.getElementById("shift1").value = getbit(10, shf1);
+            document.getElementById("k1").value = getbit(8, k1);
+            document.getElementById("shift2").value = getbit(10, shf2);
+            document.getElementById("k2").value = getbit(8, k2);
+
+            // encrypt
+            var text = document.getElementById("text_encrypt1").value;
+            var e = '';
+            var t = '';
+
+            for (var i in text) {
+                if (text[i].charCodeAt(0) > 0xFF) {
+                    var bitset = [text[i].charCodeAt(0) >> 8, text[i].charCodeAt(0) & 0xFF];
+                    var result = 0;
+
+                    for (var j in bitset) {
+                        var resIp = ip(false, bitset[j]);
+                        var resFk1 = fk(resIp, k1);
+                        var resSw = sw(resFk1);
+                        var resFk2 = fk(resSw, k2);
+                        var resIpInv = ip(true, resFk2);
+                        result |= resIpInv;
+
+                        if (j == 0) {
+                            result = result << 8;
+                        }
+
+                        document.getElementById("ip_encrypt1").value = getbit(8, resIp);
+                        document.getElementById("fk_encrypt1").value = getbit(8, resFk1);
+                        document.getElementById("sw_encrypt").value = getbit(8, resSw);
+                        document.getElementById("fk_encrypt2").value = getbit(8, resFk2);
+                        document.getElementById("ip_encrypt2").value = getbit(8, resIpInv);
+                    }
+                    e += String.fromCharCode(result);
+                    document.getElementById("text_encrypt2").value = e;
+                } else {
+                    var resIp = ip(false, text[i].charCodeAt(0));
+                    var resFk1 = fk(resIp, k1);
+                    var resSw = sw(resFk1);
+                    var resFk2 = fk(resSw, k2);
+                    var resIpInv = ip(true, resFk2);
+                    e += String.fromCharCode(resIpInv);
+
+                    document.getElementById("ip_encrypt1").value = getbit(8, resIp);
+                    document.getElementById("fk_encrypt1").value = getbit(8, resFk1);
+                    document.getElementById("sw_encrypt").value = getbit(8, resSw);
+                    document.getElementById("fk_encrypt2").value = getbit(8, resFk2);
+                    document.getElementById("ip_encrypt2").value = getbit(8, resIpInv);
+
+                    document.getElementById("text_encrypt2").value = e;
+                }
+            }
+
+            document.getElementById("text_decrypt2").value = e;
+
+            // decrypt
+            for (var i in e) {
+                if (e[i].charCodeAt(0) > 0xFF) {
+                    var bitset = [e[i].charCodeAt(0) >> 8, e[i].charCodeAt(0) & 0xFF];
+                    var result = 0;
+
+                    for (var j in bitset) {
+                        var resIp = ip(false, bitset[j]);
+                        var resFk1 = fk(resIp, k2);
+                        var resSw = sw(resFk1);
+                        var resFk2 = fk(resSw, k1);
+                        var resIpInv = ip(true, resFk2);
+                        result |= resIpInv;
+
+                        if (j == 0) {
+                            result = result << 8;
+                        }
+
+                        document.getElementById("ip_decrypt1").value = getbit(8, resIp);
+                        document.getElementById("fk_decrypt1").value = getbit(8, resFk1);
+                        document.getElementById("sw_decrypt").value = getbit(8, resSw);
+                        document.getElementById("fk_decrypt2").value = getbit(8, resFk2);
+                        document.getElementById("ip_decrypt2").value = getbit(8, resIpInv);
+                    }
+                    t += String.fromCharCode(result);
+                    document.getElementById("text_decrypt1").value = t;
+                } else {
+                    var resIp = ip(false, e[i].charCodeAt(0));
+                    var resFk1 = fk(resIp, k2);
+                    var resSw = sw(resFk1);
+                    var resFk2 = fk(resSw, k1);
+                    var resIpInv = ip(true, resFk2);
+                    t += String.fromCharCode(resIpInv);
+
+                    document.getElementById("ip_decrypt1").value = getbit(8, resIp);
+                    document.getElementById("fk_decrypt1").value = getbit(8, resFk1);
+                    document.getElementById("sw_decrypt").value = getbit(8, resSw);
+                    document.getElementById("fk_decrypt2").value = getbit(8, resFk2);
+                    document.getElementById("ip_decrypt2").value = getbit(8, resIpInv);
+
+                    document.getElementById("text_decrypt1").value = t;
+                }
+            }
+        }
+
+    </script>
+
+    <header>
+        <h1>S-DES</h1>
+    </header>
+
+    <hr/>
+
+    <section style="margin: 0 auto">
+        <section style="float: left">
+            <h3>암호화</h3>
+            <span>문장 </span><textarea id="text_encrypt1" maxlength="800" rows="5" cols="30"></textarea><br>
+            <span>IP </span><input id="ip_encrypt1" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>fk </span><input id="fk_encrypt1" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>SW </span><input id="sw_encrypt" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>fk </span><input id="fk_encrypt2" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>IP- </span><input id="ip_encrypt2" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>암호문 </span><textarea id="text_encrypt2" maxlength="800" rows="5" cols="30"></textarea>
+        </section>
+
+        <section style="float: left">
+            <h3>Key</h3>
+            <span>Key </span><input id="key" type="number" max="1023" min="0" value="642" width="150" height="20" /><br>
+            <span>P10 </span><input id="p10" type="text" maxlength="10" width="150" height="20" /><br>
+            <span>Shift 1 </span><input id="shift1" type="text" maxlength="10" width="150" height="20" /><br>
+            <span>K1</span><input id="k1" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>Shift 2</span><input id="shift2" type="text" maxlength="10" width="150" height="20" /><br>
+            <span>K2 </span><input id="k2" type="text" maxlength="8" width="150" height="20" /><br>
+        </section>
+
+        <section style="float: left">
+            <h3>복호화</h3>
+            <span>문장 </span><textarea id="text_decrypt1" maxlength="800" rows="5" cols="30"></textarea><br>
+            <span>IP- </span><input id="ip_decrypt2" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>fk </span><input id="fk_decrypt2" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>SW </span><input id="sw_decrypt" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>fk </span><input id="fk_decrypt1" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>IP </span><input id="ip_decrypt1" type="text" maxlength="8" width="150" height="20" /><br>
+            <span>암호문 </span><textarea id="text_decrypt2" maxlength="800" rows="5" cols="30"></textarea>
+        </section>
+
+        <footer>
+            <input id="run" type="button" value="실행" onclick="run()" />
+            <input id="reset" type="button" value="모두 지우기" onclick="" />
+        </footer>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>S-DES 테스트</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Usage : bit count, item(10=key, 8=char)
+        var p = function(cnt, item) {
+            var bitset = [];
+            bitset.length = cnt;
+
+            for (i = 0; i < bitset.length; i++) {
+                bitset[i] = (item >> (bitset.length - (i + 1))) & 0x1;
+            }
+            // console.log((cnt==10?('bitset10 : '):cnt==8?('bitset8 : '):('bitset4 : ')) + bitset);
+
+            var list = (cnt == 10 ? [2, 4, 1, 6, 3, 9, 0, 8, 7, 5] :
+                cnt == 8 ? [5, 2, 6, 3, 7, 4, 9, 8] : [1, 3, 2, 0]);
+            var result = 0;
+
+            for (i = 0; i < bitset.length; i++) {
+                result |= bitset[list[i]];
+                if (i != (bitset.length - 1)) {
+                    result = result << 1;
+                }
+            }
+            return result;
+        }
+
+        // Usage : shift count, bit size, item(4-bit)
+        var ls = function(scnt, bsize, item) {
+            if (scnt == 1) {
+                return ((item << 1) | (item >> (bsize - 1))) & 0x1F;
+            }
+
+            if (scnt == 2) {
+                return ((item << 2) | ((item >> (bsize - 1)) << 1) | ((item >> (bsize - 2)) & 0x1)) & 0x1F;
+            }
+        }
+
+        // Usage : is inverter, char(8-bit)
+        var ip = function(isInv, item) {
+            var bitset = [];
+            bitset.length = 8;
+
+            for (i = 0; i < bitset.length; i++) {
+                bitset[i] = (item >> (bitset.length - (i + 1))) & 0x1;
+            }
+            // console.log('bitset8S : ' + bitset);
+
+            var list = (!isInv ? [1, 5, 2, 0, 3, 7, 4, 6] : [3, 0, 2, 4, 6, 1, 7, 5]);
+            var result = 0;
+
+            for (i = 0; i < bitset.length; i++) {
+                result |= bitset[list[i]];
+                if (i != (bitset.length - 1)) {
+                    result = result << 1;
+                }
+            }
+            return result;
+        }
+
+        // Usage : right bit(4-bit), sub key
+        var F = function(r, sk) {
+            var s0 = [
+                [1, 0, 3, 2],
+                [3, 2, 1, 0],
+                [0, 2, 1, 3],
+                [3, 1, 3, 2]
+            ];
+            var s1 = [
+                [0, 1, 2, 3],
+                [2, 0, 1, 3],
+                [3, 0, 1, 0],
+                [2, 1, 0, 3]
+            ];
+
+            var bitsetR = [];
+            var bitsetSK = [];
+            bitsetR.length = 4;
+            bitsetSK.length = 8;
+
+            for (i = 0; i < 4; i++) {
+                bitsetR[i] = (r >> (4 - (i + 1))) & 0x1;
+            }
+            for (i = 0; i < 8; i++) {
+                bitsetSK[i] = (sk >> (8 - (i + 1))) & 0x1;
+            }
+            // console.log('bitset4ef : ' + bitsetR);
+            // console.log('bitset8sk : ' + bitsetSK);
+
+            var list = [3, 0, 1, 2, 1, 2, 3, 0];
+            var ep = 0;
+
+            for (i = 0; i < 8; i++) {
+                ep |= bitsetR[list[i]];
+                if (i != 7) {
+                    ep = ep << 1;
+                }
+            }
+
+            var matP = [];
+            matP.length = 8;
+
+            for (i = 0; i < matP.length; i++) {
+                matP[i] = bitsetR[i] ^ bitsetSK[i];
+                if (i != (matP.length - 1)) {
+                    matP = matP << 1;
+                }
+            }
+
+            return p(4, ((s0[(matP[0] << 1) | matP[3]][(matP[1] << 1) | matP[2]] << 2) | s1[(matP[4] << 1) | matP[7]][(matP[5] << 1) | matP[6]]));
+        }
+
+        // Usage : item(8-bit), sub key
+        var fk = function(item, sk) {
+            var l = item >> 4;
+            var r = item & 0xF;
+
+            return (l ^ F(r, sk)) << 4 | r;
+        }
+
+        // Usage : item(8-bit)
+        var sw = function(item) {
+            return ((item & 0xF) << 4) | (item >> 4);
+        }
+
+
+        // Key
+        var varp = p(10, prompt('키 값을 입력(0~1023)', 1023));
+        var temp = (ls(1, 5, varp >> 5) << 5) | ls(1, 5, varp & 0x1F);
+        var k1 = p(8, temp);
+        var k2 = p(8, (ls(2, 5, temp >> 5) << 5) | ls(2, 5, temp & 0x1F));
+        console.log('kp = ' + varp + '    ' + 'ktemp = ' + temp);
+        console.log('k1 = ' + k1);
+        console.log('k2 = ' + k2);
+
+        // encrypt
+        var text = prompt('암호화 할 평문을 입력', '정보보안 재밌어요! I\'m agree too!');
+        var e = '';
+        var t = '';
+        console.log('original : ' + text);
+
+        for (var i in text) {
+            if (text[i].charCodeAt(0) > 0xFF) {
+                var bitset = [text[i].charCodeAt(0) >> 8, text[i].charCodeAt(0) & 0xFF];
+                var result = 0;
+
+                for (var j in bitset) {
+                    result |= ip(true, fk(sw(fk(ip(false, bitset[j]), k1)), k2));
+
+                    if (j == 0) {
+                        result = result << 8;
+                    }
+                }
+                e += String.fromCharCode(result);
+            } else {
+                e += String.fromCharCode(ip(true, fk(sw(fk(ip(false, text[i].charCodeAt(0)), k1)), k2)));
+            }
+        }
+
+        console.log('encrypt : ' + e);
+
+        // decrypt
+        for (var i in e) {
+            if (e[i].charCodeAt(0) > 0xFF) {
+                var bitset = [e[i].charCodeAt(0) >> 8, e[i].charCodeAt(0) & 0xFF];
+                var result = 0;
+
+                for (var j in bitset) {
+                    result |= ip(true, fk(sw(fk(ip(false, bitset[j]), k1)), k2));
+
+                    if (j == 0) {
+                        result = result << 8;
+                    }
+                }
+                t += String.fromCharCode(result);
+            } else {
+                t += String.fromCharCode(ip(true, fk(sw(fk(ip(false, e[i].charCodeAt(0)), k2)), k1)));
+            }
+        }
+
+        console.log('decrypt : ' + t);
+
+    </script>
+</body>
+
+</html>
