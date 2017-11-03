@@ -93,17 +93,20 @@ function F(r, sk) {
         }
     }
 
-    var matP = [];
-    matP.length = 8;
+    //    var matP = [];
+    //    matP.length = 8;
+    //
+    //    for (i = 0; i < matP.length; i++) {
+    //        matP[i] = bitsetR[i] ^ bitsetSK[i];
+    //        if (i != (matP.length - 1)) {
+    //            matP = matP << 1;
+    //        }
+    //    }
+    //
+    //    return p(4, ((s0[(matP[0] << 1) | matP[3]][(matP[1] << 1) | matP[2]] << 2) | s1[(matP[4] << 1) | matP[7]][(matP[5] << 1) | matP[6]]), 4);
 
-    for (i = 0; i < matP.length; i++) {
-        matP[i] = bitsetR[i] ^ bitsetSK[i];
-        if (i != (matP.length - 1)) {
-            matP = matP << 1;
-        }
-    }
-
-    return p(4, ((s0[(matP[0] << 1) | matP[3]][(matP[1] << 1) | matP[2]] << 2) | s1[(matP[4] << 1) | matP[7]][(matP[5] << 1) | matP[6]]), 4);
+    ep = ep ^ sk;
+    return p(4, ((s0[(ep & 0x80) >> 6 | (ep & 0x10) >> 4][(ep & 0x40) >> 5 | (ep & 0x20) >> 5]) << 2) | (s1[(ep & 8) >> 2 | (ep & 1)][(ep & 4) >> 1 | (ep & 2) >> 1]), 4);
 }
 
 // Usage : item(8-bit), sub key
@@ -111,7 +114,7 @@ function fk(item, sk) {
     var l = item >> 4;
     var r = item & 0xF;
 
-    return (l ^ F(r, sk)) << 4 | r;
+    return ((l ^ F(r, sk)) << 4) | r;
 }
 
 // Usage : item(8-bit)
