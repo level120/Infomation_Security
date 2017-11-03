@@ -205,9 +205,9 @@ function calcText() {
 
     for (var i in text) {
         if (text[i].charCodeAt(0) > 0xFF) {
-            res += 200 * 7;
+            res += 200 * 9;
         }
-        res += 200 * 7;
+        res += 200 * 9;
     }
 
     return res;
@@ -220,7 +220,7 @@ function encryptText() {
             for (var i in text) {
                 (function (x) {
                     if (text[x].charCodeAt(0) > 0xFF) {
-                        n += 1400;
+                        n += 1800;
                     }
                     var t1 = setTimeout(
                         function () {
@@ -276,7 +276,7 @@ function encryptText() {
                                             }
                                         }();
                                     });
-                        }, 200 * 6 * x + n);
+                        }, 200 * 6 * x + (x==0?0:n));
                 })(i);
             }
             resolve(true);
@@ -418,7 +418,7 @@ function decryptText() {
             for (var i in e) {
                 (function (x) {
                     if (e[x].charCodeAt(0) > 0xFF) {
-                        n += 1400;
+                        n += 1800;
                     }
                     var t1 = setTimeout(
                         function () {
@@ -474,7 +474,7 @@ function decryptText() {
                                             }
                                         }();
                                     });
-                        }, 200 * 6 * x + n);
+                        }, 200 * 6 * x + (x==0?0:n));
                 })(i);
             }
             resolve(true);
