@@ -291,7 +291,7 @@ function getCipherText() {
         function (resolve, reject) {
             var t = setTimeout(function () {
                 clearTimeout(t);
-                e = document.getElementById("text_decrypt2").value;
+//                e = document.getElementById("text_encrypt2").value;
                 resolve(true);
             }, 200);
         });

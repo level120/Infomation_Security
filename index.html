@@ -17,15 +17,12 @@
     <meta property="og:title" content="12110066 Homework">
     <meta property="og:description" content="S-DES simulation">
 
+
     <!--  My script for S-DES -->
     <script type="text/javascript" src="js/sdes.js"></script>
 
     <!-- Responsive Metatag -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- Page Description and Author -->
-    <meta name="description" content="Margo - Responsive HTML5 Template">
-    <meta name="author" content="GrayGrids">
 
     <!-- Bootstrap CSS  -->
     <link rel="stylesheet" href="asset/css/bootstrap.min.css" type="text/css" media="screen">
@@ -48,7 +45,9 @@
     <!-- Color Defult -->
     <link rel="stylesheet" type="text/css" href="css/colors/red.css" media="screen" />
 
-
+    <!-- Icon info -->
+    <link rel="icon" type="image/png" href="images/fav32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/fav16.png" sizes="16x16">
 
     <!-- Margo JS  -->
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -200,7 +199,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Plain Text</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="plain text" id="text_encrypt1" type="text">
+                                <textarea class="form-control" id="text_encrypt1" rows="2" maxlength="20" placeholder="평문을 입력해주세요"></textarea>
                                 <i class="fa fa-user form-control-feedback"></i>
                             </div>
                         </div>
@@ -209,7 +208,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Key</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="0 ~ 1023" id="key" type="text" maxlength="4">
+                                <input class="form-control" placeholder="0 ~ 1023" id="key" type="text" maxlength="4" required data-error="키 값을 입력하세요">
                                 <i class="fa fa-user form-control-feedback"></i>
                             </div>
                         </div>
@@ -218,7 +217,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Decrypt Text</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="decrypt text" id="text_decrypt1" type="text">
+                                <textarea class="form-control" id="text_decrypt1" rows="2" maxlength="0" placeholder="자동으로 복호화 된 문장이 나타납니다"></textarea>
                                 <i class="fa fa-lock form-control-feedback"></i>
                             </div>
                         </div>
@@ -230,7 +229,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">IP</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="ip_encrypt1" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_encrypt1" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -239,7 +238,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">P10</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="p10" type="text" maxlength="10">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="p10" type="text" maxlength="10">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -248,7 +247,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">IP<sup>-1</sup></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="ip_decrypt1" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_decrypt1" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -260,7 +259,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">f<sub>k</sub></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="fk_encrypt1" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_encrypt1" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -269,7 +268,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">1bit Left Shift</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="shift1" type="text" maxlength="10">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="shift1" type="text" maxlength="10">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -278,7 +277,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">f<sub>k</sub></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="fk_decrypt1" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_decrypt1" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -290,7 +289,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Switch</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="sw_encrypt" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="sw_encrypt" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -299,7 +298,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">K<sub>1</sub></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="k1" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="k1" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -308,7 +307,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Switch</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="sw_decrypt" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="sw_decrypt" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -320,7 +319,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">f<sub>k</sub></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="fk_encrypt2" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_encrypt2" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -329,7 +328,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">2bit Left Shift</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="shift2" type="text" maxlength="10">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="shift2" type="text" maxlength="10">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -338,7 +337,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">f<sub>k</sub></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="fk_decrypt2" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_decrypt2" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -350,7 +349,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">IP<sup>-1</sup></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="ip_encrypt2" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_encrypt2" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -359,7 +358,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">K<sub>2</sub></label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="k2" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="k2" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -368,7 +367,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">IP</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="ip_decrypt2" type="text" maxlength="8">
+                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_decrypt2" type="text" maxlength="8">
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -380,7 +379,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Cipher Text</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="text_encrypt2" type="text">
+                                <textarea class="form-control" id="text_encrypt2" rows="2" maxlength="0" placeholder="자동으로 채워집니다"></textarea>
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -392,7 +391,7 @@
                         <div class="form-group has-feedback">
                             <label class="control-label">Encrypted Text</label>
                             <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" id="text_decrypt2" type="text">
+                                <textarea class="form-control" id="text_decrypt2" rows="2" maxlength="0" placeholder="자동으로 채워집니다"></textarea>
                                 <i class="fa form-control-feedback"></i>
                             </div>
                         </div>
@@ -425,7 +424,7 @@
 
                     <!-- Divider -->
                     <div class="hr5" style="margin-top:35px;margin-bottom:40px;"></div>
-                    
+
                     <h4 class="classic-title"><span>차세대 암호 기술 표준</span></h4>
                     <!-- Single Testimonial -->
                     <div class="classic-testimonials">
@@ -458,6 +457,8 @@
                 <div class="copyright-section">
                     <div class="row">
                         <div class="col-md-6">
+                            <p>TU Computer Engineering - 12110066's homework(Last Update - Nov, 4, 2017)</p>
+                            <p>Original Code are here <a href="https://github.com/level120/" target="_blank">Github</a>! (private repository)</p>
                             <p>Copyright 2016 Margo - Designed &amp; Developed by <a href="http://graygrids.com">GrayGrids</a></p>
                         </div>
                     </div>

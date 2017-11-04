@@ -1120,6 +1120,7 @@ input[type="submit"] {
 .widget-search input[type="search"],
 #contactForm input[type="text"],
 #contactForm textarea,
+#message,
 #respond input[type="text"],
 #respond textarea, .email {
     color: #666fb5;
@@ -1144,6 +1145,7 @@ input[type="submit"] {
 .widget-search input[type="search"]:focus,
 #contactForm input[type="text"]:focus,
 #contactForm textarea:focus,
+#message:focus,
 #respond input[type="text"]:focus,
 #respond textarea:focus {
 	border-color: #ddd;
@@ -4416,7 +4418,7 @@ footer a:hover {
 
 .copyright-section p {
 	font-size: 11px;
-	text-transform: uppercase;
+/*	text-transform: uppercase;*/
 }
 .copyright-section p a:hover{
 	text-decoration: none;
