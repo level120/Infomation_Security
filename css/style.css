@@ -4209,7 +4209,8 @@ ul.post-meta li, ul.post-meta li a {
 
 footer {
 	background-color: #222;
-    padding-top: 60px;
+/*    padding-top: 60px;*/
+    padding-top: 20px;
 	border-top: 4px solid #555;
 	color: #ccc;
 }
@@ -4219,16 +4220,21 @@ footer p {
 }
 
 footer a {
-	color: #666;
+/*	color: #666;*/
 }
 
 footer a:hover {
+/*
 	color: #666;
 	text-decoration: underline;
+*/
+	text-decoration: none;
+	color: #fff;
 }
 
 .footer-widget {
-    margin-bottom: 45px;
+/*    margin-bottom: 45px;*/
+    margin-bottom: 25px;
 }
 
 .footer-widget h4 {
