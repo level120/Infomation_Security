@@ -169,239 +169,341 @@
                 <!-- Divider -->
                 <div class="hr1" style="margin-bottom:40px;"></div>
 
-                <!-- Classic Heading -->
-                <h4 class="classic-title"><span>S-DES</span></h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div>
-                            <span style="align-content: center; text-align: center"><strong>Encryption</strong></span>
+                <div class="tabs-section">
+
+                    <!-- Nav Tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-desktop"></i>Simulation</a></li>
+                        <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-leaf"></i>Unlimited</a></li>
+                    </ul>
+
+                    <!-- Tab panels -->
+                    <div class="tab-content">
+                        <!-- Tab Content 1 -->
+                        <div class="tab-pane fade in active" id="tab-1">
+
+                            <!-- Classic Heading -->
+                            <h4 class="classic-title"><span>S-DES</span></h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div>
+                                        <span style="align-content: center; text-align: center"><strong>Encryption</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <span style="align-content: center; text-align: center"><strong>Key</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <span style="align-content: center; text-align: center"><strong>Decryption</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Plain Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_encrypt1" rows="2" maxlength="20" placeholder="평문을 입력해주세요"></textarea>
+                                            <i class="fa fa-user form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Key</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="0 ~ 1023" id="key" type="number" maxlength="4" required data-error="키 값을 입력하세요">
+                                            <i class="fa fa-user form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Decrypt Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_decrypt1" rows="2" maxlength="0" placeholder="자동으로 복호화 된 문장이 나타납니다"></textarea>
+                                            <i class="fa fa-lock form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">IP</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_encrypt1" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">P10</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="p10" type="text" maxlength="10">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">IP<sup>-1</sup></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_decrypt1" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">f<sub>k</sub></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_encrypt1" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">1bit Left Shift</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="shift1" type="text" maxlength="10">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">f<sub>k</sub></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_decrypt1" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Switch</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="sw_encrypt" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">K<sub>1</sub></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="k1" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Switch</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="sw_decrypt" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">f<sub>k</sub></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_encrypt2" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">2bit Left Shift</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="shift2" type="text" maxlength="10">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">f<sub>k</sub></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_decrypt2" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">IP<sup>-1</sup></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_encrypt2" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">K<sub>2</sub></label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="k2" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">IP</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_decrypt2" type="text" maxlength="8">
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Cipher Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_encrypt2" rows="2" maxlength="0" placeholder="자동으로 채워집니다"></textarea>
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Encrypted Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_decrypt2" rows="2" maxlength="0" placeholder="자동으로 채워집니다"></textarea>
+                                            <i class="fa form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <p style="text-align: center; margin: 0">
+                                <button type="button" class="btn btn-success btn" onclick="run()">실행</button>
+                                <button type="button" class="btn btn-warning btn" onclick="reset()">모두 지우기</button>
+                            </p>
+
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <span style="align-content: center; text-align: center"><strong>Key</strong></span>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <span style="align-content: center; text-align: center"><strong>Decryption</strong></span>
+
+                        <!-- tab 2 -->
+                        <div class="tab-pane fade" id="tab-2">
+                            <!-- Classic Heading -->
+                            <h4 class="classic-title"><span>S-DES(글자수 제한 : X)</span></h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div>
+                                        <span style="align-content: center; text-align: center"><strong>Encryption</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <span style="align-content: center; text-align: center"><strong>Key</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <span style="align-content: center; text-align: center"><strong>Decryption</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Plain Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_encrypt1_2" rows="10" placeholder="암호화 할 문장을 입력해주세요"></textarea>
+                                            <i class="fa fa-user form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Key</label>
+                                        <div class="controls">
+                                            <input class="form-control" placeholder="0 ~ 1023" id="key_2" type="number" maxlength="4" required data-error="키 값을 입력하세요">
+                                            <i class="fa fa-user form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Decrypt Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_decrypt1_2" rows="10" maxlength="0" placeholder="자동으로 복호화 된 문장이 나타납니다"></textarea>
+                                            <i class="fa fa-lock form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Cipher Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_encrypt2_2" rows="10" maxlength="0" placeholder="자동으로 암호화 된 문장이 나타납니다"></textarea>
+                                            <i class="fa fa-user form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <div class="controls"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label class="control-label">Encrypted Text</label>
+                                        <div class="controls">
+                                            <textarea class="form-control" id="text_decrypt2_2" rows="10" maxlength="0" placeholder="자동으로 암호화 된 문장이 나타납니다"></textarea>
+                                            <i class="fa fa-lock form-control-feedback"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <p style="text-align: center; margin: 0">
+                                <button type="button" class="btn btn-success btn" onclick="run2()">실행</button>
+                                <button type="button" class="btn btn-warning btn" onclick="reset2()">모두 지우기</button>
+                            </p>
+
                         </div>
                     </div>
                 </div>
 
-                <br>
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Plain Text</label>
-                            <div class="controls">
-                                <textarea class="form-control" id="text_encrypt1" rows="2" maxlength="20" placeholder="평문을 입력해주세요"></textarea>
-                                <i class="fa fa-user form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Key</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="0 ~ 1023" id="key" type="number" maxlength="4" required data-error="키 값을 입력하세요">
-                                <i class="fa fa-user form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Decrypt Text</label>
-                            <div class="controls">
-                                <textarea class="form-control" id="text_decrypt1" rows="2" maxlength="0" placeholder="자동으로 복호화 된 문장이 나타납니다"></textarea>
-                                <i class="fa fa-lock form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">IP</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_encrypt1" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">P10</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="p10" type="text" maxlength="10">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">IP<sup>-1</sup></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_decrypt1" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">f<sub>k</sub></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_encrypt1" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">1bit Left Shift</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="shift1" type="text" maxlength="10">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">f<sub>k</sub></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_decrypt1" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Switch</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="sw_encrypt" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">K<sub>1</sub></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="k1" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Switch</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="sw_decrypt" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">f<sub>k</sub></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_encrypt2" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">2bit Left Shift</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="shift2" type="text" maxlength="10">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">f<sub>k</sub></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="fk_decrypt2" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">IP<sup>-1</sup></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_encrypt2" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">K<sub>2</sub></label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="k2" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">IP</label>
-                            <div class="controls">
-                                <input class="form-control" placeholder="자동으로 채워집니다" maxlength="0" id="ip_decrypt2" type="text" maxlength="8">
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Cipher Text</label>
-                            <div class="controls">
-                                <textarea class="form-control" id="text_encrypt2" rows="2" maxlength="0" placeholder="자동으로 채워집니다"></textarea>
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback"></div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback">
-                            <label class="control-label">Encrypted Text</label>
-                            <div class="controls">
-                                <textarea class="form-control" id="text_decrypt2" rows="2" maxlength="0" placeholder="자동으로 채워집니다"></textarea>
-                                <i class="fa form-control-feedback"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-                <p style="text-align: center; margin: 0">
-                    <button type="button" class="btn btn-success btn" onclick="run()">실행</button>
-                    <!--                    <button type="button" class="btn btn-primary btn" onclick="runStep()">한 단계씩 실행</button>-->
-                    <!--                    <button type="button" class="btn btn-info btn" onclick="copy()">암호문 자동복사</button>-->
-                    <button type="button" class="btn btn-warning btn" onclick="reset()">모두 지우기</button>
-                </p>
 
                 <!-- Divider -->
                 <div class="hr5" style="margin-top:35px;margin-bottom:40px;"></div>
@@ -447,7 +549,7 @@
                     <div class="col-md-12">
                         <div class="footer-widget mail-subscribe-widget">
                             <h4>Infomation of Algorithm Developer <span class="head-line"></span></h4>
-                            <p><a href="http://ce.tu.ac.kr">Tongmyong University ( Computer Engineering )</a> | 12110066's homework ( Last Update - Nov, 5, 2017 )</p>
+                            <p><a href="http://ce.tu.ac.kr">Tongmyong University ( Computer Engineering )</a> | 12110066's homework ( Last Update - Nov, 6, 2017 )</p>
                             <p>Original Codes are uploaded here <a href="https://github.com/level120/">Github</a>! (private repository)</p>
                         </div>
                     </div>
